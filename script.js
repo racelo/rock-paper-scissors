@@ -3,6 +3,8 @@ const btnPaper = document.getElementById("paper");
 const btnScissors = document.getElementById("scissors");
 const result = document.getElementById("result");
 const endResult = document.getElementById("end-result");
+const humScore = document.getElementById("human-score");
+const compScore = document.getElementById("computer-score");
 
 const buttons = document.querySelectorAll(".btn");
 
@@ -31,7 +33,7 @@ function getHumanChoice(button) {
 }
 
 function playGame() {
-  let round = 0;
+  // let round = 0;
   let humanScore = 0;
   let computerScore = 0;
 
@@ -56,6 +58,8 @@ function playGame() {
       result.textContent = "You win! Nice pick!";
     } else if (humanSelection === computerSelection) {
       result.textContent = "It's a tie!";
+      // humanScore++;
+      // computerScore++;
     }
   }
 
@@ -74,12 +78,16 @@ function playGame() {
       let humanSelection = getHumanChoice(button);
       let computerSelection = getComputerChoice();
 
-      while (round < 5) {
+      while (humanScore !== 5 || computerScore !== 5) {
         playRound(humanSelection, computerSelection);
-        round++;
+
+        humScore.textContent = humanScore;
+        compScore.textContent = computerScore;
+        // round++;
         break;
       }
-      if (round >= 5) {
+
+      if (humanScore === 5 || computerScore === 5) {
         gameOver();
       }
     });

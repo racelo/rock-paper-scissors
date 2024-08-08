@@ -65,9 +65,9 @@ function playGame() {
 
   function gameOver() {
     if (humanScore > computerScore) {
-      endResult.textContent = `Congrats you win! You got ${humanScore} correct answers!`;
+      endResult.textContent = `CONGRATS YOU WIN THIS ROUND!`;
     } else if (humanScore < computerScore) {
-      endResult.textContent = `Computer got ${computerScore} correct answers. Try again next time!`;
+      endResult.textContent = `COMPUTER WINS THIS ROUND! TRY AGAIN NEXT TIME!`;
     } else if (humanScore === computerScore) {
       endResult.textContent = "It's a draw!";
     }
@@ -83,7 +83,6 @@ function playGame() {
 
         humScore.textContent = humanScore;
         compScore.textContent = computerScore;
-        // round++;
         break;
       }
 

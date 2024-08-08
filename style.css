@@ -84,3 +84,34 @@ img {
 img:hover {
   transform: scale(1.2);
 }
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+
+  background-color: #ffeead;
+  border: 10px solid coral;
+  padding: 1.5em;
+  color: orangered;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+button {
+  /* font-family: "Roboto", sans-serif; */
+  margin-top: 20px;
+  font: inherit;
+  font-size: 0.75em;
+  border: 3px solid #003049;
+  border-radius: 5px;
+  background-color: orangered;
+  color: #003049;
+}

@@ -5,7 +5,11 @@ const result = document.getElementById("result");
 const endResult = document.getElementById("end-result");
 const humScore = document.getElementById("human-score");
 const compScore = document.getElementById("computer-score");
-
+const modal = document.querySelector(".modal");
+const modalHum = document.getElementById("modal-human");
+const modalComp = document.getElementById("modal-computer");
+const btnPlay = document.querySelector("button");
+const modalResult = document.querySelector(".modal-result");
 const buttons = document.querySelectorAll(".btn");
 
 // Get computer choice
@@ -32,11 +36,25 @@ function getHumanChoice(button) {
   }
 }
 
-function playGame() {
-  // let round = 0;
-  let humanScore = 0;
-  let computerScore = 0;
+let humanScore;
+let computerScore;
 
+function init() {
+  humanScore = 0;
+  computerScore = 0;
+
+  humScore.textContent = 0;
+  compScore.textContent = 0;
+  result.textContent = "";
+
+  buttons.forEach((button) => {
+    button.style.pointerEvents = "initial";
+  });
+
+  modal.classList.add("hidden");
+}
+
+function playGame() {
   function playRound(humanSelection, computerSelection) {
     if (humanSelection === "rock" && computerSelection === "paper") {
       computerScore++;
@@ -58,18 +76,20 @@ function playGame() {
       result.textContent = "You win! Nice pick!";
     } else if (humanSelection === computerSelection) {
       result.textContent = "It's a tie!";
-      // humanScore++;
-      // computerScore++;
     }
   }
 
   function gameOver() {
+    buttons.forEach((button) => {
+      button.style.pointerEvents = "none";
+    });
+
     if (humanScore > computerScore) {
-      endResult.textContent = `CONGRATS YOU WIN THIS ROUND!`;
+      modal.classList.remove("hidden");
+      modalResult.textContent = "Congrats! You beat the computer! 🎉";
     } else if (humanScore < computerScore) {
-      endResult.textContent = `COMPUTER WINS THIS ROUND! TRY AGAIN NEXT TIME!`;
-    } else if (humanScore === computerScore) {
-      endResult.textContent = "It's a draw!";
+      modal.classList.remove("hidden");
+      modalResult.textContent = "Computer wins this round. 💻";
     }
   }
 
@@ -93,4 +113,7 @@ function playGame() {
   });
 }
 
+init();
 playGame();
+
+btnPlay.addEventListener("click", init);
